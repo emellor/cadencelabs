@@ -140,6 +140,20 @@ export default function AthleteDetailPage() {
                 </div>
               </div>
             </div>
+
+            {/* Forms Quick Access */}
+            <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Forms</h3>
+              <Link 
+                href={`/athlete/${athleteId}/forms`}
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-md transition-colors inline-block text-center"
+              >
+                View My Forms
+              </Link>
+              <p className="text-xs text-gray-500 mt-2 text-center">
+                Complete daily check-ins and surveys
+              </p>
+            </div>
           </div>
 
           {/* Main Content Area */}
