@@ -109,7 +109,7 @@ export default function Home() {
             <span className="block">Begin your transformation today.</span>
           </h2>
           <p className="mt-4 text-lg leading-6 text-blue-200">
-            Join thousands of others who have already transformed their lives with DailyFit.
+            Join thousands of others who have already transformed their lives with Cadence Labs.
           </p>
           <Link
             href="/signup"

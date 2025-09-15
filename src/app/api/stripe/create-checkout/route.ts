@@ -7,7 +7,6 @@ import { prisma } from "@/lib/prisma";
 export async function POST() {
   try {
     const session = await getServerSession(authOptions);
-    
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -16,7 +15,6 @@ export async function POST() {
       where: { email: session.user.email },
       include: { subscription: true },
     });
-
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
@@ -28,7 +26,6 @@ export async function POST() {
 
     // Ensure Stripe customer exists
     let customerId = user.subscription?.stripeCustomerId;
-    
     if (!customerId) {
       const customer = await stripe.customers.create({
         email: user.email,
@@ -38,7 +35,7 @@ export async function POST() {
     }
 
     // Create Checkout Session
-    const checkout = await stripe.checkout.sessions.create({
+    const checkoutSession = await stripe.checkout.sessions.create({
       mode: "subscription",
       customer: customerId,
       line_items: [
@@ -51,27 +48,15 @@ export async function POST() {
       cancel_url: `${process.env.NEXTAUTH_URL}/paywall`,
     });
 
-    // Create or update subscription record
-    await prisma.subscription.upsert({
-      where: { userId: user.id },
-      create: {
-        userId: user.id,
-        stripeCustomerId: customerId,
-        stripeSubscriptionId: "pending",
-        status: "incomplete",
-        currentPeriodEnd: new Date(),
-      },
-      update: {
-        stripeCustomerId: customerId,
-      },
-    });
+    // Optionally: create or update subscription record here
+    // await prisma.subscription.upsert({ ... });
 
-    return NextResponse.json({ url: checkout.url });
-  } catch (error) {
-    console.error("Stripe checkout error:", error);
-    return NextResponse.json(
-      { error: "Failed to create checkout session" },
-      { status: 500 }
-    );
+    return NextResponse.json({ url: checkoutSession.url });
+  } catch (err) {
+    console.error('Stripe checkout error:', err);
+    if (err && typeof err === 'object' && 'message' in err) {
+      return NextResponse.json({ error: `Failed to create checkout session: ${err.message}` }, { status: 500 });
+    }
+    return NextResponse.json({ error: 'Failed to create checkout session (unknown error)' }, { status: 500 });
   }
 }

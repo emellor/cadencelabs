@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DailyFit - Your Personal Fitness Journey",
+  title: "Cadance Labs - The Science of Victory. Built on Evidence, Not Intuition",
   description: "Transform your health with personalized workouts, nutrition tracking, and expert guidance.",
 };
 
