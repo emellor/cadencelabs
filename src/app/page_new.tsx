@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 
 export default function Home() {
@@ -21,18 +19,10 @@ export default function Home() {
         }
       `}</style>
 
-      <div  className="max-w-[1400px] mx-auto overflow-x-hidden">
+      <div className="max-w-[1400px] mx-auto overflow-x-hidden">
         {/* Header */}
-        <header 
-          className="flex justify-between items-center px-12 py-8 relative z-10"
-          style={{
-            backgroundImage: 'url(/top-main-filler_crop_top2px.png)',
-            backgroundRepeat: 'repeat-y',
-            backgroundPosition: 'center top',
-            backgroundSize: '1400px 18px',
-          }}
-        >
-          <div className="text-2xl font-bold text-white">CADENCE LABS</div>
+        <header className="flex justify-between items-center px-12 py-8 relative z-10">
+          <div className="text-2xl font-bold text-white">LUTPACT</div>
           <nav>
             <ul className="flex gap-6 list-none p-0 m-0">
               <li>
@@ -67,14 +57,13 @@ export default function Home() {
           <div 
             className="absolute inset-0"
             style={{
-
-               background: 'url(/cadence-labs-ai-platform.png) no-repeat center center/cover'
-             }}
+              background: 'linear-gradient(135deg, #0f171e 0%, #1e293b 50%, #0ea5e9 100%)'
+            }}
           ></div>
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 to-transparent opacity-80"></div>
           <div className="relative z-10">
             <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-8">
-              Turn Raw Rider Data into <br />
+              1Turn Raw Rider Data into <br />
               WORLD TOUR-WINNING <br />
               <span className="text-green-400">DEFINING DECISIONS</span>
             </h1>

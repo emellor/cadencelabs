@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto, Montserrat } from "next/font/google";
 import { ClientSessionProvider } from "@/components/SessionProvider";
-import { Navbar } from "@/components/Navbar";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  variable: '--font-roboto',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const montserrat = Montserrat({
+  weight: ['700', '800'],
+  subsets: ['latin'],
+  variable: '--font-montserrat',
 });
 
 export const metadata: Metadata = {
-  title: "Cadance Labs - The Science of Victory. Built on Evidence, Not Intuition",
-  description: "Transform your health with personalized workouts, nutrition tracking, and expert guidance.",
+  title: "CADENCE LABS - 11Turn Raw Rider Data into World Tour-Winning Decisions",
+  description: "Transform cycling performance with AI-powered analytics, digital twins, and race simulation technology.",
 };
 
 export default function RootLayout({
@@ -27,10 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${roboto.variable} ${montserrat.variable} antialiased`}
       >
         <ClientSessionProvider>
-          <Navbar />
           {children}
         </ClientSessionProvider>
       </body>
