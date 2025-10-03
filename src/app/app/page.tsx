@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 
 function IntegrationButton({ service, connected, onConnect }: { service: string; connected: boolean; onConnect: () => void }) {
   return (
@@ -39,6 +40,17 @@ export default function AppPage() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 px-4">
       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
         <h1 className="text-2xl font-bold text-center mb-8 text-gray-800">Cadence Labs Setup: Connect Your Data</h1>
+        
+        {/* Skip Setup Option */}
+        <div className="text-center mb-6">
+          <Link 
+            href="/app/dashboard"
+            className="text-blue-600 hover:text-blue-800 underline text-sm"
+          >
+            Skip setup and go to dashboard →
+          </Link>
+        </div>
+        
         <div className="space-y-4">
           <IntegrationButton
             service="TrainingPeaks"
@@ -58,7 +70,12 @@ export default function AppPage() {
           )}
         </div>
         {allConnected && (
-          <button className="mt-8 w-full py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition-colors text-lg">Go to Dashboard</button>
+          <Link 
+            href="/app/dashboard"
+            className="mt-8 w-full py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition-colors text-lg block text-center"
+          >
+            Go to Dashboard
+          </Link>
         )}
       </div>
     </div>
